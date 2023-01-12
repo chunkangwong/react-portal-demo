@@ -3,27 +3,28 @@ import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerARef = useRef<HTMLDivElement>(null);
+  const containerBRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState(false);
 
   const handleShow = () => {
-    setShow(true);
+    setShow(!show);
   };
 
   return (
     <div>
       <Button variant="contained" onClick={handleShow}>
-        Show
+        Switch
       </Button>
       <div className="App">
-        <div className="container">
-          {show && (
-            <Portal container={containerRef.current}>
-              <Typography variant="h3">hello world</Typography>
-            </Portal>
-          )}
+        <div className="container" ref={containerARef}>
+          <Portal
+            container={show ? containerARef.current : containerBRef.current}
+          >
+            <Typography variant="h3">hello world</Typography>
+          </Portal>
         </div>
-        <div className="container" ref={containerRef}></div>
+        <div className="container" ref={containerBRef}></div>
       </div>
     </div>
   );
