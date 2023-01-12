@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.App {
+  display: flex;
+  gap: 20px;
+}
+
 .container {
   height: 300px;
   width: 300px;
