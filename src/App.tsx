@@ -8,8 +8,7 @@ import {
 import { useState } from "react";
 
 function App() {
-  const containerANode = createHtmlPortalNode();
-  const containerBNode = createHtmlPortalNode();
+  const contentNode = createHtmlPortalNode();
   const [_switch, setSwitch] = useState(false);
 
   const handleSwitch = () => {
@@ -21,15 +20,15 @@ function App() {
       <Button variant="contained" onClick={handleSwitch}>
         Switch
       </Button>
-      <InPortal node={_switch ? containerANode : containerBNode}>
+      <InPortal node={contentNode}>
         <Typography variant="h3">hello world</Typography>
       </InPortal>
       <div className="App">
         <div className="container">
-          <OutPortal node={containerANode} />
+          {_switch && <OutPortal node={contentNode} />}
         </div>
         <div className="container">
-          <OutPortal node={containerBNode} />
+          {!_switch && <OutPortal node={contentNode} />}
         </div>
       </div>
     </div>
